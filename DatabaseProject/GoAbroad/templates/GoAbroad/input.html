@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/GoAbroad/input/" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>用户名：{{ username }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>
+    {% else %}
+    <p><strong>{{ success_message }} you may click
+    <a href="/GoAbroad/"> here </a>
+    to get back</strong></p>
+    {% endif %}
+			<div class="form-item", id="form-item">
+				<div id="input_form">
+					<p>GPA：</p>
+					<input type="text" name='GPA' placeholder="please input gpa, e.g. 3.5/4.0" />
+					<p>major：</p>
+					<input type="text" name='major' placeholder="please input your major e.g. 本科CS&研究生EE" />
+					<p>type：</p>
+					<input type="text" name='type' placeholder="please input your type e.g. 本科申请研究生/本科申请博士" />
+					<p>rank：</p>
+					<input type="text" name='rank' placeholder="please input your rank e.g. 本科1/10&研究生5/20" />
+					<p>handindate：</p>
+					<input type="text" name='handindate' placeholder="please input your hand in date e.g. 2022/1/1" />
+					<p>getdate：</p>
+					<input type="text" name='getdate' placeholder="please input your get result date e.g. 2022/1/1" />
+					<br /><br />
+				</div>
+			</div>
+</fieldset>
+<input type="submit" value="提交">
+</form>
+
+</body>
+</html>

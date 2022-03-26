@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+<ul>
+    {% if username != null%}
+        <h1>Welcome user {{ username }}</h1>
+        <a href="/GoAbroad/input">Clike here to input your information</a>
+    {% else %}
+    <form action="/GoAbroad/login_context/" method="get">
+        <div> 用户名
+            <input type="text" name="username">
+        </div>
+        <div> 密码
+            <input type="text" name="pwd">
+        </div>
+        <input type="submit" value="登陆">
+    </form>
+    {% endif %}
+
+</ul>
+</head>
+<body>
+
+</body>
+</html>

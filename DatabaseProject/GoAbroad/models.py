@@ -4,6 +4,7 @@ from django.db import models
 
 class Student(models.Model):
     student_ID = models.CharField(max_length=200)
+    major = type = models.CharField(max_length=200)
     type = models.CharField(max_length=200)
     GPA = models.FloatField()
     Rank =  models.CharField(max_length=200)
@@ -24,3 +25,4 @@ class School(models.Model):
 
     def __str__(self):
         return self.school_Name
+
