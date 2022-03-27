@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<title>个人博客</title>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-7 col-md-offset-1 scroll">
+                {% for x in students %}
+                <a href="/GoAbroad/detail/{{x.student_ID}}/" >
+                    <h3>{{x.student_ID}}</h3>
+               </a>GPA：{{x.GPA}} major：{{x.major}}
+                {% empty %}
+                 <p>-----敬请期待-----</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

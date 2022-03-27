@@ -19,10 +19,13 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    path(r'^admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('logout/', views.user_logout, name='login_out'),
     path('login/', views.login, name='login'),
     path('login_context/', views.login_context, name='login_context'),
     path('register/', views.register, name='register'),
+    path('register_context/', views.register_context, name='register_context'),
     path('input/', views.input, name='input'),
+    path('list/', views.list, name='list'),
+    path('detail/<int:stu_id>/',views.blog_detail,name='blog_detail'),
 ]

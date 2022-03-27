@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+</head>
+    <script>
+    function goBack(){
+     window.history.back()
+    }
+    </script>
+<style>
+    body{
+    background:"/static/background.jpg/";
+    background-size:80px 60px;
+    background-repeat:no-repeat;
+    }
+</style>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-brand">GoAbroad </p>
+        </div>
+        <ul class="nav navbar-nav ">
+            <li><a class="navbar-brand" href="/GoAbroad/">首页</a></li>
+            <li><a class="navbar-brand" href="/GoAbroad/list/">全部内容</a></li>
+        </ul>
+        {% if user.is_staff %}
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-brand"><a href="/admin/">管理</a></li>
+                <li class="navbar-brand"><a href="/GoAbroad/logout/">登出</a></li>
+                <li class="navbar-brand"><a href="/GoAbroad/register/">注册</a></li>
+            </ul>
+        {% elif user.is_authenticated %}
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-brand"><a href="/GoAbroad/logout/">登出</a></li>
+            <li class="navbar-brand"><a href="/GoAbroad/register/">注册</a></li>
+        </ul>
+        {% else %}
+         <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-brand"><a href="/GoAbroad/login/">登录</a></li>
+            <li class="navbar-brand"><a href="/GoAbroad/register/">注册</a></li>
+        </ul>
+        {% endif %}
+    </div>  
+</div>  
+<div>
+
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+{% extends 'base.html'%}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/GoAbroad/input/" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>内容详情</h1></legend>
+    <h4>ID:{{ID}}</h4>
+    <h4>GPA:{{GPA}}</h4>
+    <h4>major:{{major}}</h4>
+    <h4>type:{{type}}</h4>
+    <h4>Rank:{{Rank}}</h4>
+    <h4>scholarship:{{scholarship}}</h4>
+    <h4>Hand_in_date:{{Hand_in_date}}</h4>
+    <h4>get_offer_date:{{get_offer_date}}</h4>
+
+</fieldset>
+</form>
+
+</body>
+</html>
+{% endblock %}

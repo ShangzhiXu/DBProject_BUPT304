@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
+{% extends 'base.html'%}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,7 +10,7 @@
 <form action="/GoAbroad/input/" method="post">
 {% csrf_token %}
 <fieldset>
-    <legend><h1>用户名：{{ username }}</h1></legend>
+    <legend><h1>用户名：{{ request.user.username }}</h1></legend>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>
     {% else %}
     <p><strong>{{ success_message }} you may click
@@ -38,3 +40,4 @@
 
 </body>
 </html>
+{% endblock %}

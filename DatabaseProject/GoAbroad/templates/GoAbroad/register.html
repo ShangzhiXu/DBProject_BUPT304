@@ -10,14 +10,14 @@
         <h1>Welcome user {{ username }}</h1>
         <a href="/GoAbroad/input">Clike here to input your information</a>
     {% else %}
-    <form action="/GoAbroad/login_context/" method="get">
+    <form action="/GoAbroad/register_context/" method="get">
         <div> 用户名
             <input type="text" name="username">
         </div>
         <div> 密码
             <input type="text" name="pwd">
         </div>
-        <input type="submit" value="登陆">
+        <input type="submit" value="注册">
     </form>
     {% endif %}
 

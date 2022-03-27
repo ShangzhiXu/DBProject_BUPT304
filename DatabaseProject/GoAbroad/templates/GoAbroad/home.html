@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="zh">
-
+{% extends 'base.html'%}
+{% block content %}
 <style>
  h1.padding{
     position:relative;
@@ -62,7 +64,13 @@
 <ul>
 <h1 class="padding" ><center> Welcome</center></h1>
 <h2 class="padding"><center>Database project designed by bupt group</center></h2>
-<h3 class="padding"><center><a href="/GoAbroad/login">Clike here to log in & explore more about us</a></center></h3>
+<h3 class="padding">
+ <center>Clike here to
+  <a href="/GoAbroad/login">log in </a>or
+  <a href="/GoAbroad/register">register</a>
+ </center>
+</h3>
 
 
 </html>
+{% endblock %}
