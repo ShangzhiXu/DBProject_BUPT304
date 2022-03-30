@@ -1,30 +1,96 @@
 <!DOCTYPE html>
 <html lang="zh">
-{% extends 'base.html'%}
-{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>login</title>
-<ul>
+    <link rel="stylesheet" href="./login.css">
+</head>
+
+<style>
+    html{
+        background-color: #D3DEDC;
+        height: 100%;
+    }
+
+    body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    }
+
+    .box{
+        width: 300px;
+        padding: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+    .box h2{
+        color: black;
+    }
+
+    .box input[type = "text"],.box input[type = "password"]{
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 14px 10px;
+        width: 200px;
+        outline: none;
+        color: black;
+        border-radius: 24px;
+        transition: 0.25s;
+    }
+    .box input[type ="submit"]{
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #2ecc71;
+        padding: 14px 10px;
+        width: 110px;
+        outline: none;
+        color: black;
+        border-radius: 24px;
+        transition: 0.25s;
+    }
+
+    .form-item input[type="text"]:focus,.form-item input[type="password"]:focus{
+		width: 450px;
+		border-color: #2ecc71;
+	}
+
+    .welcome{
+        width: 300px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+
+</style>
+
+<body>
     {% if username != null%}
+    <div class="welcome">
         <h1>Welcome user {{ username }}</h1>
         <a href="/GoAbroad/input">Clike here to input your information</a>
+    </div>
+
     {% else %}
-    <form action="/GoAbroad/login_context/" method="get">
-        <div> 用户名
-            <input type="text" name="username">
-        </div>
-        <div> 密码
-            <input type="text" name="pwd">
-        </div>
-        <input type="submit" value="登陆">
+    <form class="box" action="/GoAbroad/login_context/" method="get">
+        <h2>Login</h2>
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="pwd" placeholder="Password">
+        <input type="submit" value="Login">
     </form>
     {% endif %}
 
-</ul>
-</head>
-<body>
-
 </body>
 </html>
-{% endblock %}

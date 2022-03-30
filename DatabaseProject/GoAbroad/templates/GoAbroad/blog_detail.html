@@ -6,21 +6,73 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    html,body{
+        height: 100%;
+    }
+    .box{
+        width: 300px;
+        padding: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+    .box h1{
+        color: #344B48;
+        text-align: center;
+        padding-bottom: 24px;
+    }
+    .box p{
+        color: black;
+        font-family: "Yuanti SC";
+        font-size: 22px;
+        -webkit-animation:myfirst 2s;
+    }
+    @-webkit-keyframes myfirst /* Safari and Chrome */
+{
+	from {
+	color:white;
+	}
+	to {
+	color: black;
+	}
+}
+    .box a[href="/GoAbroad/list/"]{
+        border: 0;
+        text-decoration: none;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #2ecc71;
+        padding: 17px 10px;
+        width: 80px;
+        outline: none;
+        color:black;
+        border-radius: 24px;
+        transition: 0.25s;
+        font-family: "Yuanti SC";
+        font-size: 22px;
+        font-weight: bold;
+    }
+</style>
 <body>
 <form action="/GoAbroad/input/" method="post">
 {% csrf_token %}
-<fieldset>
-    <legend><h1>内容详情</h1></legend>
-    <h4>ID:{{ID}}</h4>
-    <h4>GPA:{{GPA}}</h4>
-    <h4>major:{{major}}</h4>
-    <h4>type:{{type}}</h4>
-    <h4>Rank:{{Rank}}</h4>
-    <h4>scholarship:{{scholarship}}</h4>
-    <h4>Hand_in_date:{{Hand_in_date}}</h4>
-    <h4>get_offer_date:{{get_offer_date}}</h4>
-
-</fieldset>
+<div class="box" >
+    <h1>内容详情</h1>
+    <p>ID:{{ID}}</p><br>
+    <p>GPA:{{GPA}}</p><br>
+    <p>major:{{major}}</p><br>
+    <p>type:{{type}}</p><br>
+    <p>Rank:{{Rank}}</p><br>
+    <p>scholarship:{{scholarship}}</p><br>
+    <p>Hand_in_date:{{Hand_in_date}}</p><br>
+    <p>get_offer_date:{{get_offer_date}}</p><br>
+    <a href="/GoAbroad/list/">back<a/>
+</div>
 </form>
 
 </body>
