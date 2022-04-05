@@ -76,6 +76,9 @@
                     <option value ="scholarship">scholarship</option>
                     <option value ="Hand_in_date">Hand_in_date</option>
                     <option value="get_offer_date">get_offer_date</option>
+                    <option value ="program_name">program_name</option>
+                    <option value="teacher_name">teacher_name</option>
+                    <option value ="school_name">school_name</option>
                 </select>
                 <input type="text" name='q' placeholder="search" />
                 <button type="submit">搜索</button>
@@ -90,6 +93,7 @@
             </ul>
         {% elif user.is_authenticated %}
         <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-brand"><a href="/GoAbroad/input/">管理</a></li>
             <li class="navbar-brand"><a href="/GoAbroad/logout/">登出</a></li>
             <li class="navbar-brand"><a href="/GoAbroad/register/">注册</a></li>
         </ul>

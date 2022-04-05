@@ -13,6 +13,7 @@ class Student(models.Model):
     major = models.CharField(max_length=200)
     program_name = models.CharField(max_length=200)
     teacher_name = models.CharField(max_length=200)
+    school_name = models.CharField(max_length=200)
     other = models.CharField(max_length=10000)
 
 

@@ -131,7 +131,12 @@ def search(request):
         student_list = Student.objects.filter(Hand_in_date__icontains=question)
     elif select == 'get_offer_date':
         student_list = Student.objects.filter(get_offer_date__icontains=question)
-
+    elif select == 'program_name':
+        student_list = Student.objects.filter(program_name__contains=question)
+    elif select == 'teacher_name':
+        student_list = Student.objects.filter(teacher_name__contains=question)
+    elif select == 'school_name':
+        student_list = Student.objects.filter(school_name__contains=question)
     context = {'students': student_list}
     return render(request, 'blog_list.html', context)
 
@@ -162,13 +167,13 @@ def adv_search_context(request):
     if 'major' in request.GET:
         if request.GET['major']:
             major = request.GET['major']
-            student_list1 = Student.objects.filter(major__icontains=major)
+            student_list1 = Student.objects.filter(major__contains=major)
             student_list = merge(student_list1,student_list)
     print(student_list)
     if 'type' in request.GET:
         if request.GET['type'] :
             type = request.GET['type']
-            student_list1 = Student.objects.filter(type__icontains=type)
+            student_list1 = Student.objects.filter(type__contains=type)
             student_list = merge(student_list1,student_list)
     print(student_list)
     if 'rank' in request.GET and 'rank1' in request.GET:
@@ -191,6 +196,21 @@ def adv_search_context(request):
             getdate1 = request.GET['getdatedate1']
             student_list1 = Student.objects.filter(Hand_in_date__range=[getdate, getdate1])
             student_list = merge(student_list1, student_list)
-    print(student_list)
+    if 'program_name' in request.GET:
+        if request.GET['program_name'] :
+            program_name = request.GET['program_name']
+            student_list1 = Student.objects.filter(program_name__contains=program_name)
+            student_list = merge(student_list1,student_list)
+    if 'school_name' in request.GET:
+        if request.GET['school_name'] :
+            school_name = request.GET['school_name']
+            student_list1 = Student.objects.filter(school_name__contains=school_name)
+            student_list = merge(student_list1,student_list)
+    if 'teacher_name' in request.GET:
+        if request.GET['teacher_name'] :
+            teacher_name = request.GET['teacher_name']
+            student_list1 = Student.objects.filter(teacher_name__contains=teacher_name)
+            student_list = merge(student_list1,student_list)
+
     context = {'students': student_list}
     return render(request, 'blog_list.html', context)
