@@ -100,7 +100,10 @@ def blog_detail(request,stu_id):
     student= get_object_or_404(Student,student_ID=stu_id)
     context = {'ID': student.student_ID, 'GPA': student.GPA, 'major': student.major,
                'type': student.type, 'Rank': student.Rank,'scholarship':student.scholarship,
-               'Hand_in_date' : student.Hand_in_date, 'get_offer_date':student.get_offer_date}
+               'Hand_in_date' : student.Hand_in_date, 'get_offer_date':student.get_offer_date,
+               'program_name':student.program_name,'teacher_name':student.teacher_name,'school_name':student.school_name,
+               'other':student.other
+               }
     return render(request, 'blog_detail.html', context)
 
 
