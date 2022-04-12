@@ -217,3 +217,54 @@ def adv_search_context(request):
 
     context = {'students': student_list}
     return render(request, 'blog_list.html', context)
+
+def practice(request):
+    practice = Practice()
+    try:
+        practice.company_name = request.POST['company_name']
+        practice.leader_name = request.POST['leader_name']
+        practice.work_time = request.POST['work_time']
+        practice.payment = request.POST['payment']
+        practice.house = request.POST['house']
+        practice.rent = request.POST['rent']
+        practice.save()
+    except (KeyError):
+        return render(request, 'GoAbroad/practice.html', {
+            'error_message': "Please input all the blanks",
+        })
+    else:
+        return render(request, 'GoAbroad/practice.html', {
+            'success_message': "Thanks for your input",
+        })
+def put_teacher(request):
+    teacher = Teacher()
+    try:
+        teacher.teacher_name = request.POST['teacher_name']
+        teacher.major = request.POST['major']
+        teacher.school_name = request.POST['school_name']
+        teacher.save()
+    except (KeyError):
+        return render(request, 'GoAbroad/put_teacher.html', {
+            'error_message': "Please input all the blanks",
+        })
+    else:
+        return render(request, 'GoAbroad/put_teacher.html', {
+            'success_message': "Thanks for your input",
+        })
+def put_agent(request):
+    agent = Agent()
+    try:
+        agent.agent_name = request.POST['agent_name']
+        agent.cost = request.POST['cost']
+        agent.evaluate = request.POST['evaluate']
+        agent.save()
+    except (KeyError):
+        return render(request, 'GoAbroad/put_agent.html', {
+            'error_message': "Please input all the blanks",
+        })
+    else:
+        return render(request, 'GoAbroad/put_agent.html', {
+            'success_message': "Thanks for your input",
+        })
+def test(request):
+    return HttpResponse('test')

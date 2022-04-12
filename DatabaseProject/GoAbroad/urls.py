@@ -31,4 +31,11 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('adv_search/', views.adv_search, name='adv_search'),
     path('adv_search_context/', views.adv_search_context, name='adv_search_context'),
+    #用户填写实习信息界面
+    path('practice/', views.practice, name='practice'),
+    #用户填写老师信息界面
+    path('put_teacher/', views.put_teacher, name='put_teacher'),
+    #用户填写中介信息界面
+    path('put_agent/', views.put_agent, name='put_agent'),
+    path('test/', views.test, name='test'),
 ]
