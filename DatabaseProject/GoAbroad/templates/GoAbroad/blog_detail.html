@@ -11,20 +11,14 @@
         height: 100%;
     }
     .box{
-        width: 300px;
+        width: 1000px;
         padding: 40px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        text-align: center;
     }
     .box h1{
         color: #344B48;
-        text-align: center;
         padding-bottom: 24px;
     }
-    .box p{
+    .box p,textarea{
         color: black;
         font-family: "Yuanti SC";
         font-size: 22px;
@@ -40,6 +34,9 @@
 	}
 }
     .box a[href="/GoAbroad/list/"]{
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
         border: 0;
         text-decoration: none;
         background: none;
@@ -57,6 +54,18 @@
         font-size: 22px;
         font-weight: bold;
     }
+
+    textarea{
+        width: 700px;
+        height: 500px;
+        background: none;
+        border: 2px solid black;
+        padding: 14px 10px;
+        outline: none;
+        color: black;
+        border-radius: 24px;
+    }
+
 </style>
 <body>
 <form action="/GoAbroad/input/" method="post">
@@ -68,13 +77,14 @@
     <p>major:{{major}}</p><br>
     <p>type:{{type}}</p><br>
     <p>Rank:{{Rank}}</p><br>
-    <p>scholarship:{{scholarship}}</p><br>
-    <p>Hand_in_date:{{Hand_in_date}}</p><br>
-    <p>get_offer_date:{{get_offer_date}}</p><br>
-    <p>school_name:{{school_name}}</p><br>
-    <p>teacher_name:{{teacher_name}}</p><br>
-    <p>program_name:{{program_name}}</p><br>
-    <p>other:{{other}}</p><br>
+    <p>scholarship: {{scholarship}}</p><br>
+    <p>Hand_in_date: {{Hand_in_date}}</p><br>
+    <p>get_offer_date: {{get_offer_date}}</p><br>
+    <p>school_name: {{school_name}}</p><br>
+    <p>teacher_name: {{teacher_name}}</p><br>
+    <p>program_name: {{program_name}}</p><br>
+    <p>other:</p>
+     <textarea readonly>{{other}}</textarea><br>
     <a href="/GoAbroad/list/">back<a/>
 </div>
 </form>

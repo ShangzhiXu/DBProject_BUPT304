@@ -1,108 +1,161 @@
+
 <!DOCTYPE html>
-<html lang="zh">
-{% extends 'base.html'%}
-{% block content %}
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Teacher</title>
 </head>
-
-<style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
-
-	.form-item p{
-		text-align: center;
-	}
-	.form-item input[type="text"]{
-		border: 0;
-        background: none;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #3498db;
-        padding: 14px 10px;
-        width: 400px;
-        outline: none;
-        color: black;
-        border-radius: 24px;
-        transition: 0.25s;
-	}
-	input[type ="submit"]{
-		float: right;
-        border: 0;
-        background: none;
-        display: block;
-        border: 2px solid #3498db;
-        padding: 14px 10px;
-		margin: 0 15px 30px 0px;
-        width: 110px;
-		height: 60px;
-        outline: none;
-        color: black;
-		font-size: 17px;
-        border-radius: 24px;
-        transition: 0.25s;
+    <script>
+    function goBack(){
+     window.history.back()
     }
-	.form-item input[type="text"]:focus{
-		width: 450px;
-		border-color: #2ecc71;
-		font-size: 24px;
-	}
-	html{
+    </script>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    html{
         background-color: #D3DEDC;
         background-repeat: no-repeat;
     }
-	h2{
-		padding: 8px 0;
-		color: black;
-		font-family: "Yuanti SC";
-		text-align: center;
-	}
-	strong{
-		display:block;
-		padding-bottom: 8px;
-		width: 400px;
-		margin: 0 auto;
-		text-align: center;
-	}
-	.form-item p{
-		color: black;
-	}
+
+    .container-fluid{
+        width: 100%;
+        height: 62px;
+        border-bottom:3px solid #7C99AC;
+    }/*导航栏容器*/
+
+    .navbar-header {
+        float: left;
+        display: inline-block;
+        line-height: 60px;
+        font-size: 30px;
+        font-weight: bold;
+        color: #2E3635;
+    }/*logo*/
+
+    li{
+        height: 0;
+        list-style: none;
+    }
+
+    .container-fluid li a {
+        float: right;
+        font-family: "Yuanti SC";
+        text-decoration: none;
+        color: #7C99AC;
+        display: block;
+        width: 100px;
+        line-height: 60px;
+        font-size: 22px;
+        text-align: center;
+        margin-left: 20px;
+    }
+
+    .container-fluid li a:hover{
+        color: black;
+    }
+
+    .search-box{
+        float: left;
+        width: 800px;
+        height: 60px;
+    }
+    .search-box select{
+        float: left;
+        width: 130px;
+        height: 35px;
+        margin: 13px 10px 12px 10px;
+        line-height: 60px;
+        font-size: 15px;
+        font-family: "Yuanti SC";
+        font-weight: lighter;
+    }
+    .search-box input[type="text"]{
+        float: left;
+        width: 300px;
+        height: 31px;
+        line-height: 60px;
+        margin: 13px 10px 12px 0;
+        transition: 0.25s;
+        font-size: 20px;
+        font-family: "Yuanti SC";
+        font-weight: lighter;
+    }
+    .search-box button[type="submit"]{
+        float: left;
+        width: 100px;
+        height: 35px;
+        display: block;
+        margin: 13px auto;
+        text-align: center;
+        font-family: "Yuanti SC";
+        font-weight: lighter;
+    }
+    .search-box button[onclick="window.location.href='/GoAbroad/adv_search/'"]{
+        float: left;
+        width: 100px;
+        height: 35px;
+        margin: 13px 4px;
+        font-family: "Yuanti SC";
+        font-weight: lighter;
+    }
+
 
 </style>
 <body>
-<form action="/GoAbroad/put_teacher/" method="post">
-{% csrf_token %}
 
-    <h2>用户名：{{ request.user.username }}</h2>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>
-    {% else %}
-    <p><strong>{{ success_message }} you may click
-    <a href="/GoAbroad/"> here </a>
-    to get back</strong></p>
-    {% endif %}
-			<div class="form-item", id="form-item">
-				<div id="input_form">
-					<p>teacher_name</p>
-					<input type="text" name='teacher_name' placeholder="please input teacher_name" />
-					<p>major</p>
-					<input type="text" name='major' placeholder="please input your major" />
-					<p>school_name</p>
-					<input type="text" name='school_name' placeholder="please input your school_name" />
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-brand">GoAbroad </p>
+        </div>
+        <ul class="nav navbar-nav ">
+            <li><a class="navbar-brand" href="/GoAbroad/">首页</a></li>
+            <li><a class="navbar-brand" href="/GoAbroad/list/">全部内容</a></li>
+        </ul>
+        {% if user.is_staff %}
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-brand"><a href="/admin/">管理</a></li>
+            <li class="navbar-brand"><a href="/GoAbroad/logout/">登出</a></li>
+            <li class="navbar-brand"><a href="/GoAbroad/register/">注册</a></li>
+        </ul>
+        {% elif user.is_authenticated %}
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-brand"><a href="/GoAbroad/logout/">登出</a></li>
+            <li class="navbar-brand"><a href="/GoAbroad/register/">注册</a></li>
+        </ul>
+        {% else %}
+         <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-brand"><a href="/GoAbroad/login/">登录</a></li>
+            <li class="navbar-brand"><a href="/GoAbroad/register/">注册</a></li>
+        </ul>
+        {% endif %}
+        <div class="search-box">
+            <form  class="search"method="get" action="/GoAbroad/search/">
+                {% csrf_token %}
+                <select name='select'>
+                    <option value ="student_ID">student_ID</option>
+                    <option value ="major">major</option>
+                    <option value="type">type</option>
+                    <option value="GPA">GPA</option>
+                    <option value ="scholarship">scholarship</option>
+                    <option value ="Hand_in_date">Hand_in_date</option>
+                    <option value="get_offer_date">get_offer_date</option>
+                </select>
+                <input type="text" name='q' placeholder=" search" />
+                <button type="submit">搜索</button>
+                <button onclick="window.location.href='/GoAbroad/adv_search/'">高级搜索</button>
+            </form>
 
-					<br>
-					<br>
-					<input type="submit" value="提交">
-				</div>
-			</div>
+        </div>
 
 
-
-</form>
-
+    </div>  
+</div>  
+<div>
+    {% block content %}{% endblock %}
+</div>
 </body>
 </html>
-{% endblock %}

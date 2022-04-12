@@ -16,7 +16,7 @@
 	.form-item p{
 		text-align: center;
 	}
-	.form-item input[type="text"]{
+	.form-item input[type="text"],textarea{
 		border: 0;
         background: none;
         display: block;
@@ -46,7 +46,7 @@
         border-radius: 24px;
         transition: 0.25s;
     }
-	.form-item input[type="text"]:focus{
+	.form-item input[type="text"]:focus,textarea:focus{
 		width: 450px;
 		border-color: #2ecc71;
 		font-size: 24px;
@@ -71,7 +71,17 @@
 	.form-item p{
 		color: black;
 	}
-
+	#input_form a{
+		display: block;
+		color: dimgrey;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	#input_form textarea {
+		display: block;
+		height:500px;
+		width: 400px;
+	}
 </style>
 <body>
 <form action="/GoAbroad/input/" method="post">
@@ -107,8 +117,8 @@
 					<p>schoolname</p>
 					<input type="text" name='schoolname' placeholder="please input your school_name" />
 					<p>other</p>
-					<input type="text" name='other' placeholder="other information" />
-
+<!--					<input type="text" name='other' placeholder="other information" />-->
+					<textarea type="text" name="other" placeholder="other information"></textarea>
 					<br>
 					<br>
 					<input type="submit" value="提交">

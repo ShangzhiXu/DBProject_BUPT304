@@ -45,7 +45,7 @@
         border-radius: 24px;
         transition: 0.25s;
     }
-    .box input[type ="submit"]{
+    .box input[type ="submit"],.box a{
         border: 0;
         background: none;
         display: block;
@@ -58,6 +58,11 @@
         color: black;
         border-radius: 24px;
         transition: 0.25s;
+
+    }
+    .box a{
+        text-decoration: none;
+        font-size: 6px;
     }
 
     .form-item input[type="text"]:focus,.form-item input[type="password"]:focus{
@@ -74,6 +79,7 @@
         text-align: center;
     }
 
+
 </style>
 
 <body>
@@ -89,8 +95,9 @@
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="pwd" placeholder="Password">
         <input type="submit" value="Login">
+        <a href="http://127.0.0.1:8000/admin">ADMIN 登陆入口</a>
     </form>
-    <a href="http://127.0.0.1:8000/admin">ADMIN 登陆入口</a>
+
     {% endif %}
 
 </body>
