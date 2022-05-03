@@ -41,7 +41,7 @@
             <div class="col-xs-12 col-sm-6 col-md-7 col-md-offset-1 scroll">
                 {% for x in students %}
                 <a href="/GoAbroad/detail/{{x.student_ID}}/" >{{x.student_ID}}</a>
-                <p>GPA：{{x.GPA}} major：{{x.major}}</p>
+                <p>GPA：{{x.GPA}} major：{{x.major.major}}</p>
                 {% empty %}
                  <p>-----敬请期待-----</p>
                 {% endfor %}

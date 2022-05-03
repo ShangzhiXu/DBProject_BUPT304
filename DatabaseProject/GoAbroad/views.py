@@ -75,18 +75,49 @@ def input(request):
     try:
         student.student_ID = request.user.username
         student.GPA = request.POST['GPA']
-        student.major = request.POST['major']
+
+        major = request.POST['major']
+        majorAll = Major.objects.all()
+        for x in majorAll:
+            if(x.major == major):
+                student.major = x
         student.type = request.POST['type']
         student.Rank = request.POST['rank']
+
         student.Hand_in_date = request.POST['handindate']
         student.get_offer_date = request.POST['getdate']
+
+        program = request.POST['programname']
+        programAll = Program.objects.all()
+        for x in programAll :
+            if (x.program_name == program):
+                student.program_name  = x
+
+        practice = request.POST['practicename']
+        practiceAll = Practice.objects.all()
+        for x in practiceAll:
+            if (x.company_name == practice):
+                student.practice = x
+        print(student.practice)
+
+        teacher_name= request.POST['teachername']
+        teacherAll = Teacher.objects.all()
+        for x in teacherAll:
+            if (x.teacher_name ==  teacher_name):
+                student.teacher_name = x
+
+        school_name = request.POST['schoolname']
+        schoolAll = School.objects.all()
+        for x in schoolAll:
+            if (x.school_name == school_name):
+                student.school_name = x
         student.save()
     except (KeyError):
         return render(request, 'GoAbroad/input.html', {
             'error_message': "Please input all the blanks",
         })
-    else:
-        return render(request, 'GoAbroad/input.html', {
+
+    return render(request, 'GoAbroad/input.html', {
             'success_message': "Thanks for your input",
         })
 
@@ -101,6 +132,7 @@ def blog_detail(request,stu_id):
     context = {'ID': student.student_ID, 'GPA': student.GPA, 'major': student.major,
                'type': student.type, 'Rank': student.Rank,'scholarship':student.scholarship,
                'Hand_in_date' : student.Hand_in_date, 'get_offer_date':student.get_offer_date,
+               'practice': student.practice,
                'program_name':student.program_name,'teacher_name':student.teacher_name,'school_name':student.school_name,
                'other':student.other
                }
