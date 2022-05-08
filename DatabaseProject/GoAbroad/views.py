@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -93,7 +94,7 @@ def input(request):
             if (x.program_name == program):
                 student.program_name  = x
 
-        practice = request.POST['practicename']
+        practice = request.POST['practicename']+" "+request.user.username
         practiceAll = Practice.objects.all()
         for x in practiceAll:
             if (x.company_name == practice):
@@ -111,6 +112,14 @@ def input(request):
             if (x.school_name == school_name):
                 student.school_name = x
         student.save()
+    except(IntegrityError):
+        return render(request, 'GoAbroad/bad.html', {
+            'error_message': "请确认是否老师/专业/学校都已经在数据库中，没有请先填写再提交",
+        })
+    except (ValueError):
+        return render(request, 'GoAbroad/input.html', {
+            'error_message': "Please input all the blanks",
+        })
     except (KeyError):
         return render(request, 'GoAbroad/input.html', {
             'error_message': "Please input all the blanks",
@@ -128,6 +137,8 @@ def list(request):
 
 def blog_detail(request,stu_id):
     student= get_object_or_404(Student,student_ID=stu_id)
+    print(11111111)
+    print(student.practice)
     context = {'ID': student.student_ID, 'GPA': student.GPA, 'major': student.major,
                'type': student.type, 'Rank': student.Rank,'scholarship':student.scholarship,
                'Hand_in_date' : student.Hand_in_date, 'get_offer_date':student.get_offer_date,
@@ -252,7 +263,7 @@ def adv_search_context(request):
 def practice(request):
     practice = Practice()
     try:
-        practice.company_name = request.POST['company_name']
+        practice.company_name = request.POST['company_name']+" "+request.user.username
         practice.leader_name = request.POST['leader_name']
         practice.work_time = request.POST['work_time']
         practice.payment = request.POST['payment']
