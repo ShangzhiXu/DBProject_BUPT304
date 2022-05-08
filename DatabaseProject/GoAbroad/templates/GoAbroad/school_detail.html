@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+{% extends 'base.html'%}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    html,body{
+        height: 100%;
+    }
+    .box{
+        width: 1000px;
+        padding: 40px;
+    }
+    .box h1{
+        color: #344B48;
+        padding-bottom: 24px;
+    }
+    .box p,textarea{
+        color: black;
+        font-family: "Yuanti SC";
+        font-size: 22px;
+        -webkit-animation:myfirst 2s;
+    }
+    @-webkit-keyframes myfirst /* Safari and Chrome */
+{
+	from {
+	color:white;
+	}
+	to {
+	color: black;
+	}
+}
+    .box a[href="/GoAbroad/school_list/"]{
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+        border: 0;
+        text-decoration: none;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #2ecc71;
+        padding: 17px 10px;
+        width: 80px;
+        outline: none;
+        color:black;
+        border-radius: 24px;
+        transition: 0.25s;
+        font-family: "Yuanti SC";
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    textarea{
+        width: 700px;
+        height: 500px;
+        background: none;
+        border: 2px solid black;
+        padding: 14px 10px;
+        outline: none;
+        color: black;
+        border-radius: 24px;
+    }
+
+</style>
+<body>
+<form action="/GoAbroad/school_detail/" method="post">
+{% csrf_token %}
+<div class="box" >
+    <h1>内容详情</h1>
+    <p>school_name:{{Name}}</p><br>
+    <p>qs_rank:{{qs_rank}}</p><br>
+    <p>enrollment:{{enrollment}}</p><br>
+    <p>final_number:{{final_number}}</p><br>
+    <p>enrollment_for_bupt:{{enrollment_for_bupt}}</p><br>
+    <p>other:</p>
+     <textarea readonly>{{other}}</textarea><br>
+    <a href="/GoAbroad/school_list/">back</a>
+</div>
+</form>
+
+</body>
+</html>
+{% endblock %}

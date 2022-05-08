@@ -38,4 +38,8 @@ urlpatterns = [
     #用户填写中介信息界面
     path('put_agent/', views.put_agent, name='put_agent'),
     path('test/', views.test, name='test'),
+    path('teacher_detail/<str:teacher_name>/',views.teacher_detail,name='teacher_detail'),
+    path('school_detail/<str:school_name>/',views.school_detail,name='school_detail'),
+    path('school_list/', views.school_list, name='school_list'),
+    path('teacher_list/', views.teacher_list, name='teacher_list'),
 ]

@@ -1,0 +1,54 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<title>教师列表</title>
+<style>
+    html,body{
+        height: 100%;
+    }
+    .container{
+        background-color: #D3DEDC;
+        background-repeat: no-repeat;
+    }
+    .row a{
+        display: block;
+        height: 30px;
+        width: auto;
+        text-decoration: none;
+        color: black;
+        font-family: "Yuanti SC";
+        font-size: 24px;
+        font-weight: bold;
+        margin: 5px 0 0 10px;
+    }
+    .row a:hover{
+        font-size: 30px;
+    }
+    .row p{
+        display: inline-block;
+        font-family: "Yuanti SC";
+        font-size: 20px;
+        color: #344B48;
+        margin: 0 0 0 10px;
+        border-bottom: 2px double #344B48;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-7 col-md-offset-1 scroll">
+                {% for x in teachers %}
+                <a href="/GoAbroad/teacher_detail/{{x.teacher_name}}/" >{{x.teacher_name}}</a>
+                <p>major：{{x.major}}</p>
+                {% empty %}
+                 <p>-----敬请期待-----</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+
+{% endblock %}
