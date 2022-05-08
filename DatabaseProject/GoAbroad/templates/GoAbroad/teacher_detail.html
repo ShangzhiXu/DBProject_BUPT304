@@ -72,9 +72,9 @@
 {% csrf_token %}
 <div class="box" >
     <h1>内容详情</h1>
-    <p>teacher_name:{{teacher_name}}</p><br>
-    <p>major:{{major}}</p><br>
-    <p>school_name:{{school_name}}</p><br>
+    <p>teacher_name:{{Name}}</p><br>
+    <p>major:{{Major.major}}</p><br>
+    <p>school_name:{{School}}</p><br>
     <p>other:</p>
      <textarea readonly>{{other}}</textarea><br>
     <a href="/GoAbroad/teacher_list/">back</a>

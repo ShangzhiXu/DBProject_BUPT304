@@ -269,10 +269,21 @@ def practice(request):
         })
 def put_teacher(request):
     teacher = Teacher()
+
     try:
         teacher.teacher_name = request.POST['teacher_name']
-        teacher.major = request.POST['major']
-        teacher.school_name = request.POST['school_name']
+        major = request.POST['major']
+        majorAll = Major.objects.all()
+        for x in majorAll:
+            if (x.major == major):
+                teacher.major = x
+        print(teacher.major)
+        school_name = request.POST['school_name']
+        schoolAll = School.objects.all()
+        for x in schoolAll:
+            if (x.school_name == school_name):
+                teacher.school_name = x
+        print(major)
         teacher.save()
     except (KeyError):
         return render(request, 'GoAbroad/put_teacher.html', {
@@ -308,7 +319,6 @@ def teacher_detail(request,teacher_name):
     return render(request, 'teacher_detail.html', context)
 
 def school_detail(request,school_name):
-    print(11111)
     school= get_object_or_404(School,school_name= school_name)
     context = {'Name': school.school_name,'qs_rank':school.qs_rank,'enrollment':school.enrollment,
                'final_number': school.final_number,'enrollment_for_bupt': school.enrollment_for_bupt
