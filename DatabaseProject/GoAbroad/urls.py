@@ -27,6 +27,7 @@ urlpatterns = [
     path('register_context/', views.register_context, name='register_context'),
     path('input/', views.input, name='input'),
     path('list/', views.list, name='list'),
+    path('delete/<str:stu_id>/', views.delete, name='delete'),
     path('detail/<str:stu_id>/',views.blog_detail,name='blog_detail'),
     path('search/', views.search, name='search'),
     path('adv_search/', views.adv_search, name='adv_search'),

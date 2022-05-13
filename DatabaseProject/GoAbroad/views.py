@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
@@ -84,6 +85,8 @@ def input(request):
                 student.major = x
         student.type = request.POST['type']
         student.Rank = request.POST['rank']
+        student.scholarship = request.POST['scholarship']
+
 
         student.Hand_in_date = request.POST['handindate']
         student.get_offer_date = request.POST['getdate']
@@ -94,7 +97,7 @@ def input(request):
             if (x.program_name == program):
                 student.program_name  = x
 
-        practice = request.POST['practicename']+" "+request.user.username
+        practice = request.POST['practicename']+"_"+request.user.username
         practiceAll = Practice.objects.all()
         for x in practiceAll:
             if (x.company_name == practice):
@@ -111,7 +114,11 @@ def input(request):
         for x in schoolAll:
             if (x.school_name == school_name):
                 student.school_name = x
+
+        other = request.POST['other']
+        student.other = other
         student.save()
+
     except(IntegrityError):
         return render(request, 'GoAbroad/bad.html', {
             'error_message': "请确认是否老师/专业/学校都已经在数据库中，没有请先填写再提交",
@@ -120,14 +127,29 @@ def input(request):
         return render(request, 'GoAbroad/input.html', {
             'error_message': "Please input all the blanks",
         })
+    except(ValidationError):
+        return render(request, 'GoAbroad/input.html', {
+            'error_message': "请检查是否填写正确的日期格式：yy-mm-dd",
+        })
     except (KeyError):
         return render(request, 'GoAbroad/input.html', {
             'error_message': "Please input all the blanks",
+        })
+    except (Exception):
+        return render(request, 'GoAbroad/input.html', {
+            'error_message': "请按要求正确填写信息",
         })
 
     return render(request, 'GoAbroad/input.html', {
             'success_message': "Thanks for your input",
         })
+
+def delete(request,stu_id):
+    student= get_object_or_404(Student,student_ID=stu_id)
+    student.delete()
+    return render(request, 'GoAbroad/bad.html', {
+        'error_message': stu_id+":  已经删除您的信息，感谢您的支持",
+    })
 
 
 def list(request):
@@ -137,7 +159,6 @@ def list(request):
 
 def blog_detail(request,stu_id):
     student= get_object_or_404(Student,student_ID=stu_id)
-    print(11111111)
     print(student.practice)
     context = {'ID': student.student_ID, 'GPA': student.GPA, 'major': student.major,
                'type': student.type, 'Rank': student.Rank,'scholarship':student.scholarship,
@@ -263,7 +284,7 @@ def adv_search_context(request):
 def practice(request):
     practice = Practice()
     try:
-        practice.company_name = request.POST['company_name']+" "+request.user.username
+        practice.company_name = request.POST['company_name']+"_"+request.user.username
         practice.leader_name = request.POST['leader_name']
         practice.work_time = request.POST['work_time']
         practice.payment = request.POST['payment']

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 {% extends 'base.html'%}
@@ -33,7 +34,7 @@
 	color: black;
 	}
 }
-    .box a[href="/GoAbroad/school_list/"]{
+    .box a[href="/GoAbroad/list/"]{
         position: fixed;
         bottom: 0px;
         right: 0px;
@@ -65,49 +66,10 @@
         color: black;
         border-radius: 24px;
     }
-    .box p .title{
-        font-size: 25px;
-        color: #2E3635;
-
-    }
-    .box p .data{
-        font-size: 30px;
-        font-family: "Times New Roman";
-        color: #2f2c1c;
-        position: absolute;
-        left: 220px;
-    }
 
 </style>
 <body>
-<form action="/GoAbroad/school_detail/" method="post">
-{% csrf_token %}
-<div class="box" >
-    <h1>内容详情</h1>
-    <p>
-        <span class="title">学校名称:</span>
-        <span class="data">{{Name}}</span>
-    </p><br>
-    <p>
-        <span class="title">QS排名:</span>
-        <span class="data">{{qs_rank}}</span>
-    </p><br>
-    <p>
-        <span class="title">申请人数:</span>
-        <span class="data">{{enrollment}}</span>
-    </p><br>
-    <p>
-        <span class="title">最终录取:</span>
-        <span class="data">{{final_number}}</span>
-    </p><br>
-    <p>
-        <span class="title">录取的北邮学生:</span>
-        <span class="data">{{enrollment_for_bupt}}</span>
-    </p><br>
-    <p><span class="title">其他信息:</span></p>
-    <textarea readonly>{{other}}</textarea><br>
-    <a href="/GoAbroad/school_list/">back</a>
-</div>
+<h3>{{error_message}}</h3><br>
 </form>
 
 </body>

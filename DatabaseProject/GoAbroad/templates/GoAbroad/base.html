@@ -40,7 +40,7 @@
         list-style: none;
     }
 
-    .container-fluid li a {
+    .container-fluid li a{
         float: right;
         font-family: "Yuanti SC";
         text-decoration: none;
@@ -73,7 +73,7 @@
     }
     .search-box input[type="text"]{
         float: left;
-        width: 300px;
+        width: 200px;
         height: 31px;
         line-height: 60px;
         margin: 13px 10px 12px 0;
@@ -94,12 +94,13 @@
     }
     .search-box button[onclick="window.location.href='/GoAbroad/adv_search/'"]{
         float: left;
-        width: 100px;
+        width: 70px;
         height: 35px;
         margin: 13px 4px;
         font-family: "Yuanti SC";
         font-weight: lighter;
     }
+
 
 
 </style>
@@ -108,10 +109,28 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <p class="navbar-brand">GoAbroad </p>
+            <h5><a class="navbar-brand" href="/GoAbroad/" color = "black">GoAbroad</a></h5>
+        </div>
+          <div class="search-box">
+            <form  class="search"method="get" action="/GoAbroad/search/">
+                {% csrf_token %}
+                <select name='select'>
+                    <option value ="student_ID">student_ID</option>
+                    <option value ="major">major</option>
+                    <option value="type">type</option>
+                    <option value="GPA">GPA</option>
+                    <option value ="scholarship">scholarship</option>
+                    <option value ="Hand_in_date">Hand_in_date</option>
+                    <option value="get_offer_date">get_offer_date</option>
+                    <option value="school_name">school_name</option>
+                </select>
+                <input type="text" name='q' placeholder=" search" />
+                <button type="submit">搜索</button>
+            </form>
+             <button onclick="window.location.href='/GoAbroad/adv_search/'">高级搜索</button>
+
         </div>
         <ul class="nav navbar-nav ">
-            <li><a class="navbar-brand" href="/GoAbroad/">首页</a></li>
             <li><a class="navbar-brand" href="/GoAbroad/list/">全部内容</a></li>
         </ul>
         {% if user.is_staff %}
@@ -132,25 +151,7 @@
             <li class="navbar-brand"><a href="/GoAbroad/register/">注册</a></li>
         </ul>
         {% endif %}
-        <div class="search-box">
-            <form  class="search"method="get" action="/GoAbroad/search/">
-                {% csrf_token %}
-                <select name='select'>
-                    <option value ="student_ID">student_ID</option>
-                    <option value ="major">major</option>
-                    <option value="type">type</option>
-                    <option value="GPA">GPA</option>
-                    <option value ="scholarship">scholarship</option>
-                    <option value ="Hand_in_date">Hand_in_date</option>
-                    <option value="get_offer_date">get_offer_date</option>
-                    <option value="school_name">school_name</option>
-                </select>
-                <input type="text" name='q' placeholder=" search" />
-                <button type="submit">搜索</button>
-            </form>
-             <button onclick="window.location.href='/GoAbroad/adv_search/'">高级搜索</button>
 
-        </div>
 
 
     </div>

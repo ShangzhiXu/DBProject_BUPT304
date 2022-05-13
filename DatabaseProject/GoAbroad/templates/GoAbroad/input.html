@@ -61,6 +61,12 @@
 		font-family: "Yuanti SC";
 		text-align: center;
 	}
+	h3{
+		padding: 8px 0;
+		color: black;
+		font-family: "Yuanti SC";
+		text-align: center;
+	}
 	strong{
 		display:block;
 		padding-bottom: 8px;
@@ -88,6 +94,7 @@
 {% csrf_token %}
 
     <h2>用户名：{{ request.user.username }}</h2>
+	<h3><a href = "/GoAbroad/delete/{{ request.user.username }}/">点击这里可以删除你的所有信息</a></h3>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>
     {% else %}
     <p><strong>{{ success_message }} you may click
@@ -104,10 +111,12 @@
 					<input type="text" name='type' placeholder="please input your type e.g. 本科申请研究生/本科申请博士" />
 					<p>你的专业排名</p>
 					<input type="text" name='rank' placeholder="please input your rank e.g. 本科1/10&研究生5/20" />
+					<p>奖学金</p>
+					<input type="text" name='scholarship' placeholder="please input your scholarship, e.g. 3000" />
 					<p>提交申请日期</p>
-					<input type="text" name='handindate' placeholder="please input your hand in date e.g. 2022/1/1" />
+					<input type="text" name='handindate' placeholder="please input your hand in date e.g. 2022-1-1" />
 					<p>收到申请结果日期</p>
-					<input type="text" name='getdate' placeholder="please input your get result date e.g. 2022/1/1" />
+					<input type="text" name='getdate' placeholder="please input your get result date e.g. 2022-1-1" />
 					<p>项目名称</p>
 					<input type="text" name='programname' placeholder="please input your programname" />
 					<p>实习名称</p>
